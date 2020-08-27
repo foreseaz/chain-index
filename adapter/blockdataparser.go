@@ -153,6 +153,7 @@ func parseSignatures(blockHeight uint64, proposerAddress string, signatures []te
 			CouncilNodeAddress: signature.ValidatorAddress,
 			Signature:          signature.Signature,
 			IsProposer:         signature.ValidatorAddress == proposerAddress,
+			Timestamp:          signature.Timestamp,
 		})
 	}
 

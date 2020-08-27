@@ -31,6 +31,7 @@ type BlockSignature struct {
 	BlockHeight        uint64
 	CouncilNodeAddress string
 	Signature          string
+	Timestamp          time.Time
 	IsProposer         bool
 }
 

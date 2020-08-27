@@ -349,6 +349,10 @@ var _ = Describe("HTTPClient", func() {
 			block, err := client.Block(anyBlockHeight)
 			Expect(err).To(BeNil())
 			blockTime, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-07T10:00:25.582998694Z")
+			signatureCommitTime1, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-07T10:00:25.617739872Z")
+			signatureCommitTime2, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-07T10:00:25.582998694Z")
+			signatureCommitTime3, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-07T10:00:25.622478335Z")
+			signatureCommitTime4, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-07T10:00:25.574877035Z")
 			Expect(*block).To(Equal(types.Block{
 				Height:         anyBlockHeight,
 				Hash:           "2CD22EA622D190B9ABCAB797E2F60F6F4FCFC19CC0A67642E5E7856CEAD78163",
@@ -363,18 +367,22 @@ var _ = Describe("HTTPClient", func() {
 					{
 						ValidatorAddress: "34C725CABA703269B3F1D1A907A84DE5FEE96469",
 						Signature:        "W6wNdtDCsUbdodju57/2BlkmUjo6U0PH+Cf19u4RSlaBYS7svNpZOgdQqmXJnUInRjGJp8opE7a9FnnHe3oTAw==",
+						Timestamp:        signatureCommitTime1,
 					},
 					{
 						ValidatorAddress: "7570B2D23A4C7B638BEFE02EB4FC7927BFDED6B7",
 						Signature:        "W2Pkxi/AqAklmEMjsd3P9yd//1ZGxBqRMaHebcGYhlVZxcbZ02dzwgxD7c/BOOMh+kJGYPfuYNiLHD3Kts+pDA==",
+						Timestamp:        signatureCommitTime2,
 					},
 					{
 						ValidatorAddress: "D527DAECDE0501CF2E785A8DC0D9F4A64760F0BB",
 						Signature:        "zCjxVQLbEhBdBBm1VHyLP+4aFH81ke26pC0e+g+pvAzLBvWxrmzdgh347MmOVHWiW6lS9nb8xs+6bkdKRMx5Dg==",
+						Timestamp:        signatureCommitTime3,
 					},
 					{
 						ValidatorAddress: "FA7B721B5704DF98EF3ECD3796DDEF6AA2A80257",
 						Signature:        "TuflcSDZPgVTM618J9JF/tlMFwM8Z/eWrHPjixzeWukIlkFHsNMprRRPnHUKZlu+yDdSwgj6eJ0PrqRm7y/eDw==",
+						Timestamp:        signatureCommitTime4,
 					},
 				},
 			}))

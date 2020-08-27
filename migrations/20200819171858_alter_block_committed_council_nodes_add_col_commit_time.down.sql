@@ -1,0 +1,1 @@
+ALTER TABLE "block_committed_council_nodes" DROP COLUMN IF EXISTS "commit_time";

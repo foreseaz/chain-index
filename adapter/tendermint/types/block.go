@@ -121,4 +121,5 @@ type Block struct {
 type BlockSignature struct {
 	ValidatorAddress string
 	Signature        string
+	Timestamp        time.Time
 }

@@ -35,6 +35,7 @@ func RandomBlockSignature() chainindex.BlockSignature {
 		CouncilNodeAddress: RandomTendermintAddress(),
 		Signature:          RandomTendermintSignature(),
 		IsProposer:         random.Bool(),
+		Timestamp:          RandomUTCTime(),
 	}
 }
 

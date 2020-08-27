@@ -286,6 +286,7 @@ func (client *HTTPClient) parseBlockSignatures(rawSignatures []types.RawBlockSig
 		signatures = append(signatures, types.BlockSignature{
 			ValidatorAddress: rawSignature.ValidatorAddress,
 			Signature:        *rawSignature.Signature,
+			Timestamp:        rawSignature.Timestamp,
 		})
 	}
 

@@ -114,6 +114,7 @@ func (repo *RDbBlockDataRepo) parseSignaturesToCommittedCouncilNodeRows(
 			CouncilNodeAddress: signature.CouncilNodeAddress,
 			Signature:          signature.Signature,
 			IsProposer:         signature.IsProposer,
+			CommitTime:         signature.Timestamp,
 		})
 	}
 
@@ -185,12 +186,13 @@ func (repo *RDbBlockDataRepo) insertBlockCommittedCouncilNodeRow(tx RDbTx, row *
 		"council_node_id",
 		"signature",
 		"is_proposer",
-	).Values("?", "?", "?", "?").ToSql()
+		"commit_time",
+	).Values("?", "?", "?", "?", "?").ToSql()
 	if err != nil {
 		return fmt.Errorf("error building block signature insert SQL: %v: %w", err, ErrBuildSQLStmt)
 	}
 
-	result, err := tx.Exec(sql, row.BlockHeight, row.ID, row.Signature, row.IsProposer)
+	result, err := tx.Exec(sql, row.BlockHeight, row.ID, row.Signature, row.IsProposer, repo.typeConv.Tton(&row.CommitTime))
 	if err != nil {
 		return fmt.Errorf("error inserting block signature into the table: %v: %w", err, ErrRepoWrite)
 	}

@@ -19,7 +19,7 @@ import (
 
 const (
 	SQL_BLOCK_INSERT                                          = "INSERT INTO blocks (height,hash,time,app_hash,committed_council_nodes) VALUES (?,?,?,?,?)"
-	SQL_BLOCK_COMMITTED_COUNCIL_NODES_INSERT                  = "INSERT INTO block_committed_council_nodes (block_height,council_node_id,signature,is_proposer) VALUES (?,?,?,?)"
+	SQL_BLOCK_COMMITTED_COUNCIL_NODES_INSERT                  = "INSERT INTO block_committed_council_nodes (block_height,council_node_id,signature,is_proposer,commit_time) VALUES (?,?,?,?,?)"
 	SQL_REWARD_INSERT                                         = "INSERT INTO block_rewards (block_height,minted) VALUES (?,?)"
 	SQL_COUNCIL_NODE_ID_BY_ADDRESS_SELECT                     = "SELECT id, name FROM council_nodes WHERE address = ? ORDER BY id DESC"
 	SQL_COUNCIL_NODE_LAST_LEFT_AT_BLOCK_HEIGHT_UPDATE         = "UPDATE council_nodes SET last_left_at_block_height = ? WHERE id = ?"
@@ -361,6 +361,7 @@ func BlockSignatureToRDbBlockSignatureRow(signature chainindex.BlockSignature, c
 		CouncilNodeAddress: signature.CouncilNodeAddress,
 		Signature:          signature.Signature,
 		IsProposer:         signature.IsProposer,
+		CommitTime:         signature.Timestamp,
 	}
 }
 
@@ -392,12 +393,13 @@ func OnTxInsertBlockCommittedCouncilNode(mockTx *MockRDbTx, signature *chaininde
 		councilNodeId,
 		signature.Signature,
 		signature.IsProposer,
+		signature.Timestamp,
 	)
 }
 
 func OnTxInsertAnyBlockCommittedCouncilNode(mockTx *MockRDbTx) *mock.Call {
 	return mockTx.On("Exec",
-		MockSQLWithAnyArgs(SQL_BLOCK_COMMITTED_COUNCIL_NODES_INSERT, 5)...,
+		MockSQLWithAnyArgs(SQL_BLOCK_COMMITTED_COUNCIL_NODES_INSERT, 6)...,
 	)
 }
 

@@ -126,6 +126,7 @@ var _ = Describe("Blockdataparser", func() {
 		It("should parse signatures", func() {
 			anyBlockHeight := uint64(33339)
 			anyBlockTime, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-15T13:19:07.783916012Z")
+			anySignatureTimestamp, _ := time.Parse("2006-01-02T15:04:05.000000000Z", "2020-05-15T13:19:08.124727346Z")
 			block := tenderminttypes.Block{
 				Height:         anyBlockHeight,
 				Hash:           "42E2A7C6AA135D2652ED8C0BEEB446BFC2B4A54B679FE07109CD249F42EC853C",
@@ -137,22 +138,27 @@ var _ = Describe("Blockdataparser", func() {
 					{
 						ValidatorAddress: "34C725CABA703269B3F1D1A907A84DE5FEE96469",
 						Signature:        "waN7MvfcTUwA8hD5aueM5XXsZ4hkwpXCP5MMO0xr/njryxNx1hrfyPD3z07DXPAasVFVrD4mwjkbowzM4T+mCg==",
+						Timestamp:        anySignatureTimestamp,
 					},
 					{
 						ValidatorAddress: "64161C75F5F2A78806267AB3A4E2BD3C04944AA0",
 						Signature:        "N9PoH1tgBTLtPxqxfDNWKMrAPZVBpNvrzQEXQpfZMO2TXvBwKW4Gmw31b0bTUMsiyLJJkSAI+UF5zRrHEu2FDQ==",
+						Timestamp:        anySignatureTimestamp,
 					},
 					{
 						ValidatorAddress: "7570B2D23A4C7B638BEFE02EB4FC7927BFDED6B7",
 						Signature:        "t3b8S0yakf2xdCGRzsXskGegAv0xu406T7jbBoH+fqfcO3wnbvaD8xUs5A1zOKPEVzj5aylzym/w074K+omoAg==",
+						Timestamp:        anySignatureTimestamp,
 					},
 					{
 						ValidatorAddress: "D527DAECDE0501CF2E785A8DC0D9F4A64760F0BB",
 						Signature:        "x9YjNUFpi+W8WcdJXJdUgsfzYUmrqmC7NYDo0vpYpqfRh33VrUWjxkFG6auB0uliEy5yBTEZdivR+Qxb964gCg==",
+						Timestamp:        anySignatureTimestamp,
 					},
 					{
 						ValidatorAddress: "FA7B721B5704DF98EF3ECD3796DDEF6AA2A80257",
 						Signature:        "jMos+ST8x69X16GJhRqzpcG0Bxk9aRt0jifL6gJuZGqX50i9iGD5DGNZSkDfTv1YnHL3YdSsOpfXqmbuVCCuAw==",
+						Timestamp:        anySignatureTimestamp,
 					},
 				},
 			}
@@ -180,30 +186,35 @@ var _ = Describe("Blockdataparser", func() {
 						CouncilNodeAddress: "34C725CABA703269B3F1D1A907A84DE5FEE96469",
 						Signature:          "waN7MvfcTUwA8hD5aueM5XXsZ4hkwpXCP5MMO0xr/njryxNx1hrfyPD3z07DXPAasVFVrD4mwjkbowzM4T+mCg==",
 						IsProposer:         false,
+						Timestamp:          anySignatureTimestamp,
 					},
 					{
 						BlockHeight:        anyBlockHeight,
 						CouncilNodeAddress: "64161C75F5F2A78806267AB3A4E2BD3C04944AA0",
 						Signature:          "N9PoH1tgBTLtPxqxfDNWKMrAPZVBpNvrzQEXQpfZMO2TXvBwKW4Gmw31b0bTUMsiyLJJkSAI+UF5zRrHEu2FDQ==",
 						IsProposer:         true,
+						Timestamp:          anySignatureTimestamp,
 					},
 					{
 						BlockHeight:        anyBlockHeight,
 						CouncilNodeAddress: "7570B2D23A4C7B638BEFE02EB4FC7927BFDED6B7",
 						Signature:          "t3b8S0yakf2xdCGRzsXskGegAv0xu406T7jbBoH+fqfcO3wnbvaD8xUs5A1zOKPEVzj5aylzym/w074K+omoAg==",
 						IsProposer:         false,
+						Timestamp:          anySignatureTimestamp,
 					},
 					{
 						BlockHeight:        anyBlockHeight,
 						CouncilNodeAddress: "D527DAECDE0501CF2E785A8DC0D9F4A64760F0BB",
 						Signature:          "x9YjNUFpi+W8WcdJXJdUgsfzYUmrqmC7NYDo0vpYpqfRh33VrUWjxkFG6auB0uliEy5yBTEZdivR+Qxb964gCg==",
 						IsProposer:         false,
+						Timestamp:          anySignatureTimestamp,
 					},
 					{
 						BlockHeight:        anyBlockHeight,
 						CouncilNodeAddress: "FA7B721B5704DF98EF3ECD3796DDEF6AA2A80257",
 						Signature:          "jMos+ST8x69X16GJhRqzpcG0Bxk9aRt0jifL6gJuZGqX50i9iGD5DGNZSkDfTv1YnHL3YdSsOpfXqmbuVCCuAw==",
 						IsProposer:         false,
+						Timestamp:          anySignatureTimestamp,
 					},
 				},
 			}))
